@@ -28,6 +28,7 @@ form?.addEventListener('submit', e => {
     createdAt: new Date()
   }
   tasks.push(newTask);
+  saveTasks();
   addListItem(newTask);
   input.value = "";
 })
@@ -38,10 +39,16 @@ function addListItem(task: Task){
   const checkbox = document.createElement("input");
   checkbox.addEventListener("change", () => {
     task.completed = checkbox.checked;
+    saveTasks();
   })
   checkbox.type = "checkbox";
   checkbox.checked = task.completed;
   label.append(checkbox, task.title)
   item.append(label)
   list?.append(item)
+}
+
+// saving at the local storage
+function saveTasks(){
+  localStorage.saveItem('TASKS', JSON.stringify(tasks));
 }
