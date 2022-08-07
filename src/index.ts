@@ -13,10 +13,15 @@ form?.addEventListener('submit', e => {
   //input?.value => ? : null 일 수도 있기 때문에 null 이 아닐때만
   if(input?.value === "" || input?.value === null) return
   // add task obj
-  const task = {
+  const newTask = {
     id: uuidV4(),
     title: input?.value,
     completed: false,
     createdAt: new Date()
   }
+  addListItem(newTask);
 })
+
+function addListItem(task: {id: string, title: string, completed: boolean, createdAt: Date}){
+  
+}
