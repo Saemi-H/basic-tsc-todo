@@ -10,19 +10,19 @@ type Task = {
 // generics : <>
 // || as
 const list = document.querySelector<HTMLUListElement>('#list');
-const form = document.getElementById('#new-task-form') as HTMLFormElement | null;
-const input = document.querySelector<HTMLInputElement>('#lnew-task-title');
+const form = document.getElementById('new-task-form') as HTMLFormElement | null;
+const input = document.querySelector<HTMLInputElement>('#new-task-title');
 
 // add click event listeners
 form?.addEventListener('submit', e => {
   e.preventDefault();
 
   //input?.value => ? : null 일 수도 있기 때문에 null 이 아닐때만
-  if(input?.value === "" || input?.value === null) return
+  if(input?.value == "" || input?.value == null) return
   // add task obj
   const newTask: Task = {
     id: uuidV4(),
-    title: input.value,
+    title: input?.value,
     completed: false,
     createdAt: new Date()
   }
@@ -30,5 +30,11 @@ form?.addEventListener('submit', e => {
 })
 
 function addListItem(task: Task){
-
+  const item = document.createElement("li");
+  const label = document.createElement("label");
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  label.append(checkbox, task.title)
+  item.append(label)
+  list?.append(item)
 }
