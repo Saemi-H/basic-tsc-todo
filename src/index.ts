@@ -1,5 +1,12 @@
 import {v4 as uuidV4} from "uuid";
 
+type Task = {
+  id: string, 
+  title: string, 
+  completed: boolean, 
+  createdAt: Date
+}
+
 // generics : <>
 // || as
 const list = document.querySelector<HTMLUListElement>('#list');
@@ -13,15 +20,15 @@ form?.addEventListener('submit', e => {
   //input?.value => ? : null 일 수도 있기 때문에 null 이 아닐때만
   if(input?.value === "" || input?.value === null) return
   // add task obj
-  const newTask = {
+  const newTask: Task = {
     id: uuidV4(),
-    title: input?.value,
+    title: input.value,
     completed: false,
     createdAt: new Date()
   }
   addListItem(newTask);
 })
 
-function addListItem(task: {id: string, title: string, completed: boolean, createdAt: Date}){
-  
+function addListItem(task: Task){
+
 }
